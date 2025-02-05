@@ -7,6 +7,10 @@ const port = 3000
 
 app.use(cors());
 
+app.get('/', (req, res) => {
+    res.json({message: 'Welcome to my HNG task 1 submission. To get fun facts and details about any number add /api/classify-number/ to the url and add the number you want to classify as a query parameter. E.g. /api/classify-number/?number=371'})
+})
+
 app.get('/api/classify-number/', async (req, res) => {
     numInput = req.query.number;
     const APIUrl = `http://numbersapi.com/${numInput}/math`
