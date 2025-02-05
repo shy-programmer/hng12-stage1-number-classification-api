@@ -86,9 +86,9 @@ const props = (n) => {
 
 const response = (n) => {
     let res;
-    if (!isNaN(n)) {
+    if (!isNaN(n) && n % 1 == 0) {
         res = {
-        number: n,
+        number: parseInt(n),
         is_prime: is_prime(n),
         is_perfect: is_perfect(n),
         properties: props(n),

@@ -13,13 +13,18 @@ app.get('/', (req, res) => {
 
 app.get('/api/classify-number/', async (req, res) => {
     numInput = req.query.number;
-    const APIUrl = `http://numbersapi.com/${numInput}/math`
+    let result;
+    if (!isNaN(numInput) && numInput % 1 == 0) {
+        const APIUrl = `http://numbersapi.com/${numInput}/math`
     const fact = await axios.get(APIUrl);
     const fun_fact = fact.data;
-    const result = props(numInput);
-    result.fun_fact = fun_fact;
-
-
+    result = props(numInput);
+    result.fun_fact = fun_fact;}
+    else {
+        result = props(numInput);
+        console.log('here')
+    }
+    
     res.status(200).json(result);
 })
 
