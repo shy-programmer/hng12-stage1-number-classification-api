@@ -9,14 +9,14 @@ app.use(cors());
 
 app.get('/api/classify-number/', async (req, res) => {
     numInput = req.query.number;
-    const APIUrl = `http://numbersapi.com/${numInput}`
+    const APIUrl = `http://numbersapi.com/${numInput}/math`
     const fact = await axios.get(APIUrl);
     const fun_fact = fact.data;
     const result = props(numInput);
     result.fun_fact = fun_fact;
 
 
-    res.json(result);
+    res.status(200).json(result);
 })
 
 
