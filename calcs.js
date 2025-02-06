@@ -40,20 +40,23 @@ const is_perfect = (n) => {
 }
 
 const is_armstrong = (n) => {    
-    if (n < 1) {
+       if (n < 1) {
         return false;
     }
     if (n < 10) {
         return true;
     }
     let num = n.toString();
+    console.log(num);
     let pow = num.length;
     let sum = 0;
     for (let i = 0; i < pow; i++) {
         sum += Math.pow(parseInt(num[i]), pow);
     }
+    console.log(sum);
     return sum == n;
 }
+console.log(is_armstrong(-371));
 
 const is_odd = (n) => {
     return n % 2 != 0;
@@ -67,7 +70,7 @@ const digit_sum = (n) => {
     
     let num = Math.abs(n).toString().split('');
     let sum = num.reduce((a, b) => parseInt(a) + parseInt(b));
-    return sum;
+    return ParseInt(sum);
 }
 
 const props = (n) => {
@@ -98,7 +101,7 @@ const response = (n) => {
     else { 
         res = {
         number: n,
-        error: 'true'
+        error: true
     }
 }
 return res;
