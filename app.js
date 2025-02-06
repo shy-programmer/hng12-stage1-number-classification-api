@@ -32,9 +32,9 @@ app.get('/api/classify-number/', async (req, res) => {
     else {res.status(400).json({error: "Invalid input"})}
     })
 .post('/api/classify-number/', async (req, res) => {
-    if (req.query) {numInput = req.query.number};
+    if (req.body) {numInput = req.body.number};
     let result;
-    if (!isNaN(numInput) && numInput % 1 == 0 && numInput) {
+    if (numInput) {
     const APIUrl = `http://numbersapi.com/${numInput}/math`
     const fact = await axios.get(APIUrl);
     const fun_fact = fact.data;
@@ -43,11 +43,7 @@ app.get('/api/classify-number/', async (req, res) => {
     res.status(200).json(result)
     
 }
-    else if (isNaN(numInput) || numInput % 1 != 0) {
-        result = props(numInput);
-        res.status(400).json(result)
-        }
-    else {res.status(400).json({error: "Invalid input"})}
+    
     })
 
 
