@@ -14,35 +14,41 @@ app.get('/', (req, res) => {
 })
 
 app.get('/api/classify-number/', async (req, res) => {
-    numInput = req.query.number;
+    if (req.query) {numInput = req.query.number};
     let result;
-    if (!isNaN(numInput) && numInput % 1 == 0) {
+    if (!isNaN(numInput) && numInput % 1 == 0 && numInput) {
     const APIUrl = `http://numbersapi.com/${numInput}/math`
     const fact = await axios.get(APIUrl);
     const fun_fact = fact.data;
     result = props(numInput);
-    result.fun_fact = fun_fact;}
-    else {
+    result.fun_fact = fun_fact;
+    res.status(200).json(result)
+    
+}
+    else if (isNaN(numInput) || numInput % 1 != 0) {
         result = props(numInput);
+        res.status(400).json(result)
         }
-    
-    res.status(200).json(result);
-})
+    else {res.status(400).json({error: "Invalid input"})}
+    })
 .post('/api/classify-number/', async (req, res) => {
-    numInput = req.body.entry;
+    if (req.query) {numInput = req.query.number};
     let result;
-    if (!isNaN(numInput) && numInput % 1 == 0) {
+    if (!isNaN(numInput) && numInput % 1 == 0 && numInput) {
     const APIUrl = `http://numbersapi.com/${numInput}/math`
     const fact = await axios.get(APIUrl);
     const fun_fact = fact.data;
     result = props(numInput);
-    result.fun_fact = fun_fact;}
-    else {
-        result = props(numInput);
-         }
+    result.fun_fact = fun_fact;
+    res.status(200).json(result)
     
-    res.status(200).json(result);
-})
+}
+    else if (isNaN(numInput) || numInput % 1 != 0) {
+        result = props(numInput);
+        res.status(400).json(result)
+        }
+    else {res.status(400).json({error: "Invalid input"})}
+    })
 
 
 app.listen(port, () => {
