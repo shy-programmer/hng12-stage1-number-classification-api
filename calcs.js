@@ -47,16 +47,13 @@ const is_armstrong = (n) => {
         return true;
     }
     let num = n.toString();
-    console.log(num);
     let pow = num.length;
     let sum = 0;
     for (let i = 0; i < pow; i++) {
         sum += Math.pow(parseInt(num[i]), pow);
     }
-    console.log(sum);
-    return sum == n;
+        return sum == n;
 }
-console.log(is_armstrong(-371));
 
 const is_odd = (n) => {
     return n % 2 != 0;
@@ -70,7 +67,7 @@ const digit_sum = (n) => {
     
     let num = Math.abs(n).toString().split('');
     let sum = num.reduce((a, b) => parseInt(a) + parseInt(b));
-    return ParseInt(sum);
+    return parseInt(sum);
 }
 
 const props = (n) => {

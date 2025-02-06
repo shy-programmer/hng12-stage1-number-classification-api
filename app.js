@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/api/classify-number/', async (req, res) => {
-    if (req.query) {
+    if (req.query.number) {
         numInput = req.query.number;
         let result;
         if (!isNaN(numInput) && numInput % 1 == 0 && numInput) {
@@ -33,7 +33,7 @@ app.get('/api/classify-number/', async (req, res) => {
     else {
         res.status(400).json({
         number: "",
-        error: "Invalid input"})}
+        error: true})}
     })
 .post('/api/classify-number/', async (req, res) => {
     if (req.body) {numInput = req.body.number};
